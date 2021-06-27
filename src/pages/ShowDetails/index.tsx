@@ -14,15 +14,6 @@ const Image = styled.div<{ url: string }>`
   height: 400px;
 `;
 
-// id: string;
-// genres: string[];
-// schedule: string[];
-// rating: number;
-// network: string;
-// image: string;
-// name: string;
-// cast: Cast[];
-
 const ShowDetails : React.FC<any> = observer(({ match }) => {
     const movieStore = useContext(MovieStore);
     const { showDetails } = movieStore;
@@ -45,7 +36,7 @@ const ShowDetails : React.FC<any> = observer(({ match }) => {
                         <Rating rating={showDetails.rating} showNumbers />
                     </Row>
                     <Row>
-                        <Col><h2 className="mt-3">{showDetails.name}</h2></Col>
+                        <Col><h2 className="mt-3" data-cy="movie_title">{showDetails.name}</h2></Col>
                     </Row>
                     <Row>
                         <Col>

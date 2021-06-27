@@ -11,7 +11,7 @@ const Description = styled.p`
   color: #323232;
 `;
 
-const LastestShow = styled.p`
+const LatestShow = styled.p`
   text-align: left;
   font-weight: bold;
 `;
@@ -35,7 +35,7 @@ const Homepage = observer(() => {
 
     useEffect(() => {
         if (movies.length) {
-            setShownMovies(movies.slice(page*itemsPerPage, page*itemsPerPage + itemsPerPage) as any);
+            setShownMovies(movies.slice((page - 1) * itemsPerPage, (page - 1) * itemsPerPage + itemsPerPage) as any);
         }
     }, [page, movies]);
 
@@ -49,7 +49,7 @@ const Homepage = observer(() => {
             </Row>
             <Row>
                 <Col>
-                    <LastestShow>Latest Added shows:</LastestShow>
+                    <LatestShow>Latest Added shows:</LatestShow>
                 </Col>
             </Row>
             <Row>
@@ -60,44 +60,45 @@ const Homepage = observer(() => {
                     )
                 )}
             </Row>
-            <Row>
-                <Col>
-                    <Pagination>
-                        <PaginationItem disabled={page === 1} onClick={() => {
-                            setPage(1);
-                        }}>
-                            <PaginationLink first />
-                        </PaginationItem>
-                        <PaginationItem disabled={page === 1} onClick={() => {
-                            setPage(page - 1);
-                        }}>
-                            <PaginationLink previous />
-                        </PaginationItem>
-
-                        {Array(maxPage - 1).fill(null).map((_, i) => {
-                            return (
-                                <PaginationItem active={i + 1 === page} onClick={() => {
-                                    setPage(i + 1);
-                                }} >
-                                    <PaginationLink>
-                                        {i + 1}
-                                    </PaginationLink>
-                                </PaginationItem>
-                            )
-                        })}
-                        <PaginationItem disabled={maxPage - 1 === page} onClick={() => {
-                            setPage(page + 1);
-                        }}>
-                            <PaginationLink next/>
-                        </PaginationItem>
-                        <PaginationItem disabled={maxPage - 1 === page} onClick={() => {
-                            setPage(maxPage - 1);
-                        }}>
-                            <PaginationLink last />
-                        </PaginationItem>
-                    </Pagination>
-                </Col>
-            </Row>
+            {maxPage && (
+                <Row>
+                    <Col>
+                        <Pagination>
+                            <PaginationItem disabled={page === 1} onClick={() => {
+                                setPage(1);
+                            }}>
+                                <PaginationLink first />
+                            </PaginationItem>
+                            <PaginationItem disabled={page === 1} onClick={() => {
+                                setPage(page - 1);
+                            }}>
+                                <PaginationLink previous />
+                            </PaginationItem>
+                            {Array(maxPage ).fill(null).map((_, i) => {
+                                return (
+                                    <PaginationItem active={i + 1 === page} onClick={() => {
+                                        setPage(i + 1);
+                                    }} >
+                                        <PaginationLink>
+                                            {i + 1}
+                                        </PaginationLink>
+                                    </PaginationItem>
+                                )
+                            })}
+                            <PaginationItem disabled={maxPage=== page} onClick={() => {
+                                setPage(page + 1);
+                            }}>
+                                <PaginationLink next/>
+                            </PaginationItem>
+                            <PaginationItem disabled={maxPage === page} onClick={() => {
+                                setPage(maxPage );
+                            }}>
+                                <PaginationLink last />
+                            </PaginationItem>
+                        </Pagination>
+                    </Col>
+                </Row>
+            )}
         </StyledContainer>
     ) : null;
 });

@@ -61,12 +61,6 @@ class MovieStore {
     }
 }
 
-// @ts-ignore
-const StoreContext = createContext();
+export const movieStore = new MovieStore();
 
-// @ts-ignore
-export function StoreProvider({ value, children }) {
-    return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>;
-}
-
-export default MovieStore;
+export default createContext(movieStore);

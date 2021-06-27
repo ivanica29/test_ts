@@ -43,9 +43,9 @@ const BottomContent = styled.div`
 
 const MovieItem: React.FC<Movie> = ({ id, name, image, rating }) => {
     return (
-        <Link style={{ textDecoration: 'none' }} to={`/${id}`}>
-            <Wrapper as="div">
-                <Image url={image} />
+        <Link style={{ textDecoration: 'none' }} to={`/${id}`} data-cy={`movie_link-${id}`}>
+            <Wrapper data-cy={`movie_id-${id}`}>
+                <Image url={image} data-cy={`movie_image-${image}`} />
                 <BottomContent>
                     <Rating rating={rating} showNumbers={false} />
                     <Title>{name}</Title>
