@@ -20,6 +20,8 @@ export interface MovieDetails {
     image: string;
     name: string;
     cast: Cast[];
+    summary: string;
+    status: string;
 }
 
 export interface MovieResponse {
@@ -29,4 +31,16 @@ export interface MovieResponse {
         image: { original: string; };
         rating: { average: number; };
     };
+}
+
+export interface CastResponse {
+    person: {
+        name: string;
+        image: {
+            original: string;
+        }
+    };
+    character: {
+        name: string;
+    }
 }
