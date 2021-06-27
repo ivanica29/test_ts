@@ -4,3 +4,4 @@ export { default as StyledContainer } from './StyledContainer';
 export { default as Starring } from './Starring';
 export { default as ShowInfo } from './ShowInfo';
 export { default as TableItem } from './TableItem';
+export { default as Pagination } from './Pagination';

@@ -1,9 +1,9 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { observer } from "mobx-react";
 import styled from 'styled-components';
-import { Row, Col, Pagination, PaginationItem, PaginationLink } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import MovieStore from '../../stores/movies';
-import { MovieItem, StyledContainer } from "../../components";
+import { MovieItem, StyledContainer, Pagination } from "../../components";
 
 const Description = styled.p`
   text-align: left;
@@ -63,39 +63,11 @@ const Homepage = observer(() => {
             {maxPage && (
                 <Row>
                     <Col>
-                        <Pagination>
-                            <PaginationItem disabled={page === 1} onClick={() => {
-                                setPage(1);
-                            }}>
-                                <PaginationLink first />
-                            </PaginationItem>
-                            <PaginationItem disabled={page === 1} onClick={() => {
-                                setPage(page - 1);
-                            }}>
-                                <PaginationLink previous />
-                            </PaginationItem>
-                            {Array(maxPage ).fill(null).map((_, i) => {
-                                return (
-                                    <PaginationItem active={i + 1 === page} onClick={() => {
-                                        setPage(i + 1);
-                                    }} >
-                                        <PaginationLink>
-                                            {i + 1}
-                                        </PaginationLink>
-                                    </PaginationItem>
-                                )
-                            })}
-                            <PaginationItem disabled={maxPage=== page} onClick={() => {
-                                setPage(page + 1);
-                            }}>
-                                <PaginationLink next/>
-                            </PaginationItem>
-                            <PaginationItem disabled={maxPage === page} onClick={() => {
-                                setPage(maxPage );
-                            }}>
-                                <PaginationLink last />
-                            </PaginationItem>
-                        </Pagination>
+                        <Pagination
+                            page={page}
+                            setPage={setPage}
+                            maxPage={maxPage}
+                        />
                     </Col>
                 </Row>
             )}
